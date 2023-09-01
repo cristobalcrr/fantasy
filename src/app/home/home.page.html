@@ -1,24 +1,47 @@
 <ion-header [translucent]="true">
 </ion-header>
 
-<ion-content [fullscreen]="true">
-    <ion-menu contentId="main-content">
-        <ion-header>
-          <ion-toolbar>
-            <ion-title>AQUI VA EL NOMBRE</ion-title>
-          </ion-toolbar>
-        </ion-header>
-        <ion-content class="ion-padding">Elije un genero1</ion-content>
-      </ion-menu>
-      <div class="ion-page" id="main-content">
-        <ion-header>
-          <ion-toolbar>
-            <ion-buttons slot="start">
-              <ion-menu-button></ion-menu-button>
-            </ion-buttons>
-            <ion-title>Bienvenido NOMBRE</ion-title>
-          </ion-toolbar>
-        </ion-header>
-      </div>
-      <ion-searchbar placeholder="Busca tu libro favorito"></ion-searchbar>
+<ion-content scroll-y="false">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Bienvenido NOMBRE</ion-title>
+    </ion-toolbar>
+  </ion-header>
+    <ion-searchbar placeholder="Busca tu libro favorito"></ion-searchbar>
+     
+     <ion-card>
+    <ion-card-header>
+      <ion-card-title>Navega por un genero</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+    <ion-button color="success" expand="block">Fantasia</ion-button>
+    <ion-button color="danger" expand="block">Romance</ion-button>
+    <ion-button color="warning" expand="block">Accion</ion-button>
+    <ion-button color="secondary" expand="block">Comedia</ion-button>
+    <ion-button color="dark" expand="block">Terror</ion-button>
+    <ion-button color="tertiary" expand="block">Misterio</ion-button>
+    </ion-card-content>
+  </ion-card>
+  
+    <ion-content color="light">
+      <ion-list [inset]="true">
+        <ion-item>
+          <ion-label>El Señor de los anillos: el retorno del rey</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Tron de Cristal</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>La guia del Mago frugal</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Las 50 sombras de Grey</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Caballo de troya</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+
 </ion-content>

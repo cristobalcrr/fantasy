@@ -2,23 +2,47 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <ion-menu contentId="main-content">
-        <ion-header>
-          <ion-toolbar>
-            <ion-title>AQUI VA EL NOMBRE</ion-title>
-          </ion-toolbar>
-        </ion-header>
-        <ion-content class="ion-padding">Elije un genero1</ion-content>
-      </ion-menu>
-      <div class="ion-page" id="main-content">
-        <ion-header>
-          <ion-toolbar>
-            <ion-buttons slot="start">
-              <ion-menu-button></ion-menu-button>
-            </ion-buttons>
-            <ion-title>Bienvenido NOMBRE</ion-title>
-          </ion-toolbar>
-        </ion-header>
-      </div>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Bienvenido NOMBRE</ion-title>
+    </ion-toolbar>
+  </ion-header>
       <ion-searchbar placeholder="Busca tu libro favorito"></ion-searchbar>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Navega por un genero</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          <ion-button color="success" expand="block">Fantasia</ion-button>
+          <ion-button color="warning" expand="block">Accion</ion-button>
+          <ion-button color="danger" expand="block">Romance</ion-button>
+          <ion-button color="secondary" expand="block">Comedia</ion-button>
+          <ion-button color="dark" expand="block">Horror</ion-button>
+          <ion-button color="tertiary" expand="block">Misterio</ion-button>
+        </ion-card-content>
+        <ion-card-header>
+          <ion-card-title>Top 5 ibros de la semana</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-label>El Señor de los Anillos: Las dos Torres</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Trono de Cristal</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Cababallo de Troya</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Guia del Mago Frugal</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>De Sangre y Ceniza</ion-label>
+            </ion-item>
+          </ion-list>
+      </ion-card-content>
+      </ion-card>
+      <button id = "pago" expand="block">Ingresa medio de pago</button>
 </ion-content>

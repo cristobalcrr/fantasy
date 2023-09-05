@@ -2,29 +2,40 @@
 
 </ion-header>
 <ion-content [fullscreen]="true">
-  <img src="assets/img/logo final.png"/>  
+  <div container-alo>  <img src="assets/img/logo final.png"/> </div>
+
+  <div container-pika> 
   <ion-card>
     <ion-card-header>
       <ion-card-title>Bienvenido</ion-card-title>
     </ion-card-header>
   
     <ion-card-content>
-      <ion-list>
-        <ion-list>
-          <ion-item>
-            <ion-input label="Email" type="email" placeholder="book.f@fantasy.com"></ion-input>
-          </ion-item>
-      
-          <ion-item>
-            <ion-input label="Contraseña" type="password" value="password"></ion-input>
-          </ion-item>
-        </ion-list>
-      </ion-list>
+      <ion-input
+      [(ngModel)]="email"
+      label="Email"
+      label-placement="floating"
+      fill="outline"
+      placeholder=""
+      required>
+    </ion-input> 
+    <br>
+    <ion-input
+    [(ngModel)]="Password"
+    type="password"
+    label="Contraseña"
+    label-placement="floating"
+    fill="outline"
+    placeholder=""
+    required>
+  </ion-input> 
+    
 
     </ion-card-content>
   
-    <ion-button fill="clear">Registrarse</ion-button>
-    <ion-button fill="clear">Ingresar</ion-button>
+    <ion-button [routerLink]="['/registro']" fill="clear">Registrate</ion-button>
+    <ion-button  fill="clear" class="boton_registro" (click)="Login()" [disabled]="!validarFormulario()" [routerLink]="['/home']">Ingresar</ion-button>
   </ion-card>
-  <button fill="clear">¿Olvidaste tu contraseña?</button>
+  </div>
+  <ion-button [routerLink]="['/recuperar']" fill="clear">¿Olvidaste tu contraseña?</ion-button>
 </ion-content>

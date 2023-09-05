@@ -26,20 +26,6 @@
   text-decoration: none;
 }
 
-ion-searchbar{
-  height: 160px;
-  position: absolute;
-  top: 0px;
-
+ion-item {
+  --padding-start: 0;
 }
-
- label{
-  position:absolute;
-  top: 370px;
- }
-
- ion-list{
-  position: absolute;
-  top: 30px;
- }
- 

@@ -1,18 +1,11 @@
-ion-card{
-    position: absolute;
-    top: 270px;
+.container-pika{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-
-img{
-    width: 300px;
-    height: 180px;
-    position: absolute;
-    left: 30px; top: 100px;
-}
-
-button{
-    position: absolute;
-    top: 540px; left: 195px;
+.container-ola{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 

@@ -1,11 +1,10 @@
-ion-card{
-    position: absolute;
-    top: 110px;
+.container-regis{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-img{
-    width: 200px;
-    height: 100px;
-    position: absolute;
-    left: 80px; top: 15px;
+.container-ola{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -18,21 +18,10 @@ export class RegistroPage implements OnInit {
 
   ngOnInit() {
   }
-
-  registrar(){
-    if(this.nombre === ''|| this.Password === ''|| this.email ===''|| this.Telefono === ''|| this.Direccion ===''){
-      alert('Por favor rellene los campos')
-    }
-
-  }
   validarFormulario(): boolean {
     // Validar que todos los campos estén completos
-    if(this.nombre === '' || this.Password ==='' || this.email==='' || this.Telefono==='' || this.Direccion ==='') {
+    if(this.nombre === '' || (!/^(?=.*[0-9]{4})(?=.*[a-zA-Z]{3})(?=.*[A-Z]).{8,}$/.test(this.Password))  || this.email==='' || this.Telefono==='' || this.Direccion ==='') {
       return false;
-    }
-    if(this.Password.length < 8 ){
-      return false;
-
     }
         // Devolver true si el formulario es válido
         return true;

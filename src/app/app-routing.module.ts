@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'libros',
     loadChildren: () => import('./libros/libros.module').then( m => m.LibrosPageModule)
   },
+  {
+    path: '**',
+    loadChildren: () => import('./not-fount/not-fount.module').then( m => m.NotFountPageModule)
+  },
 
 
 ];

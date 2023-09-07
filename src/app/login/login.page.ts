@@ -14,21 +14,12 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
-  Login(){
-    if(this.Nombre ===''||this.Password === ''){
-      alert('Por favor rellene los campos')
+  login() {
+    // Validate the password
+    if(this.Nombre === '' || (!/^(?=.*[0-9]{4})(?=.*[a-zA-Z]{3})(?=.*[A-Z]).{8,}$/.test(this.Password))) {
+      return;
     }
-  }
-  validarFormulario(): boolean {
-    // Validar que todos los campos estén completos
-    if(this.Nombre ==='' || this.Password ==='') {
-      return false;
-    }
-    if(this.Password.length < 8 ){
-      
-      return false;
 
-    }
         // Devolver true si el formulario es válido
         return true;
       }

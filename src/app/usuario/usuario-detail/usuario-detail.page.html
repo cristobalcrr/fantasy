@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>usuario-detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{usuario.email}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-header>
+      <ion-card-title>{{usuario.nombre}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-header>
+      <ion-card-title>{{usuario.apellido}}</ion-card-title>
+    </ion-card-header>
+
+
+    <ion-card-content>
+      <ion-item>
+        <p>Edad : </p>
+        <p>{{usuario.edad | currency}}</p>
+      </ion-item>
+
+      <ion-item>
+        <p>Numero Cel. : </p>
+        <p>{{usuario.fonoContacto |currency}}</p>
+      </ion-item>
+
+      <ion-button type="button" shape="round" color="primary" expand="block" href="/usuario-edit/{{usuario.id}}">Editar</ion-button>
+      <ion-button type="button" shape="round" color="danger" expand="block" (click)="delete(usuario.id)">Eliminar</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ClProducto } from './model/ClProducto';
+import { ClProducto } from './model/CLProducto';
 
 // Importamos  las librerías necesarias
 import { Observable, of, throwError } from 'rxjs';

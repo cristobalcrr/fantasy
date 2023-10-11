@@ -1,102 +1,86 @@
 import { Component, OnInit } from '@angular/core';
-
-// Import a utilizar 
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController, AlertController } from '@ionic/angular';
-import { ClProducto } from '../model/CLProducto';
-import { ProductServiceService } from '../product-service.service';
+import { ClUsuario } from '../model/ClUsuario';
+import { UsuarioService } from '../usuario.service';
 
 
 @Component({
-  selector: 'app-product-detail',
-  templateUrl: './product-detail.page.html',
-  styleUrls: ['./product-detail.page.scss'],
+  selector: 'app-usuario-detail',
+  templateUrl: './usuario-detail.page.html',
+  styleUrls: ['./usuario-detail.page.scss'],
 })
-export class ProductDetailPage implements OnInit {
-  // Creamos registro a utilizar en el Html
- // producto: ClProducto = {
-  producto: ClProducto = {
-    id: 5151,
-    nombre: 'harry potter y la piedra folosofal',
-    precio: 21990,
-    fecha: new Date(),
-    cantidad: 20,
-    editorial: 'salammandra',
-    descripcion: ''
-};
+export class UsuarioDetailPage implements OnInit {
 
+  
 
-  // Injectamos Librerías a utilizar
+  usuario: ClUsuario ={
+    id : 15
+    ,email : 'alvarez@gmail.com'
+    ,nombre : 'hugo'
+    ,apellido : 'alvarez'
+    ,edad : 30
+    ,fonoContacto : 974247266
+
+  };
+
   constructor(
-    public restApi: ProductServiceService
+    public restApi: UsuarioService
     , public loadingController: LoadingController
     , public alertController: AlertController
     , public route: ActivatedRoute
     , public router: Router
   ) { }
 
-  // En el OnInit, ejecutamos la lectura
   ngOnInit() {
-    this.getProduct();
+    this.getUsuarios();
   }
 
-// Método que permite leer el producto
-  async getProduct() {
-    console.log("getProduct **************** ParamMap ID:" + this.route.snapshot.paramMap.get('id'));
-    // Creamos un Wait
+  async getUsuarios() {
+    console.log("getUsuarios **************** ParamMap ID:" + this.route.snapshot.paramMap.get('id'));
     const loading = await this.loadingController.create({ message: 'Loading...' });
-    // Mostramos el Wait
     await loading.present();
-    await this.restApi.getProduct(this.route.snapshot.paramMap.get('id')!)
+    await this.restApi.getUsuario(this.route.snapshot.paramMap.get('id')!)
       .subscribe({
         next: (res) => {
           console.log("Data *****************");
           console.log(res);
-          // Si funciona la respuesta la pasamos al producto
-          this.producto = res;
+          this.usuario = res;
           loading.dismiss();
         }
         , complete: () => { }
         , error: (err) => {
-          //Si no funcion desplegamos en consola el error
           console.log("Error DetailProduct Página", err);
-          loading.dismiss(); //Elimina la espera
+          loading.dismiss();
         }
       })
   }
 
-  // El Html invoca el método delete
   async delete(id: number) {
-    // Confirma Primero
     this.presentAlertConfirm(id, 'Confirme la Eliminación, De lo cantrario Cancele');
   }
-  // Creamos una rutina para confirmar la eliminación
   async presentAlertConfirm(id: number, msg: string) {
     const alert = await this.alertController.create({
-      header: 'Warning!', // Título
-      message: msg,   // Mensaje
-      buttons: [   // Botones
+      header: 'Warning!',
+      message: msg,
+      buttons: [
         {
           text: 'Eliminar : ' + id + " OK",
-          handler: () => { // Si presiona ejecuta esto
-            //this.router.navigate(['']);
+          handler: () => { 
             this.deleteConfirmado(id)
           }
         }
       ]
     });
-    // Presenta en pantalla
     await alert.present();
   }
-
-  // Es invocado desde el Alert
   async deleteConfirmado(id: number) {
     alert("Eliminando " + id)
     const loading = await this.loadingController.create({
       message: 'Loading...'
     });
     await loading.present();
-    await this.restApi.deleteProduct(id)
+    await this.restApi.deleteUsuario(id)
       .subscribe({
         next: (res) => {
           console.log("Error DetailProduct Página", res);
@@ -106,10 +90,10 @@ export class ProductDetailPage implements OnInit {
         , complete: () => { }
         , error: (err) => {
           console.log("Error DetailProduct Página", err);
-          loading.dismiss(); //Elimina la espera
+          loading.dismiss();
         }
 
       })
   }
-}
 
+}

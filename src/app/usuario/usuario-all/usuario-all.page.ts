@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { ClProducto } from '../model/CLProducto';
+import { ClUsuario } from '../model/ClUsuario';
+
 @Component({
-  selector: 'app-product-all',
-  templateUrl: './product-all.page.html',
-  styleUrls: ['./product-all.page.scss'],
+  selector: 'app-usuario-all',
+  templateUrl: './usuario-all.page.html',
+  styleUrls: ['./usuario-all.page.scss'],
 })
-export class ProductAllPage implements OnInit {
+export class UsuarioAllPage implements OnInit {
   msgError = ""
   buttonEliminarDisabled = false
   buttonLeerDisabled = false
   buttonActualizarDisabled = false
   buttonCrearDisabled = false
-  producto: ClProducto = {id:1, nombre: '', descripcion: '', precio:0, fecha: new Date(), cantidad:0, editorial:''};;
+  usuario: ClUsuario = { id: 1, email: '', nombre: '', apellido: '', edad: 0 ,fonoContacto:0 };;
 
   constructor() { }
   ngOnInit() {  }
@@ -24,4 +25,3 @@ export class ProductAllPage implements OnInit {
   actualizar() { }
   grabarActualizarAutomatico() { }
 }
-

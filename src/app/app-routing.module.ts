@@ -55,7 +55,35 @@ const routes: Routes = [
     path: 'folder',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   },
-
+  {
+    path: 'ususario-add',
+    loadChildren: () => import('./usuario/usuario-add/usuario-add.module').then( m => m.UsuarioAddPageModule)
+  },
+  {
+    path: 'usuario-detail',
+    loadChildren: () => import('./usuario/usuario-detail/usuario-detail.module').then( m => m.UsuarioDetailPageModule)
+  },
+  {
+    path: 'usuario-edit',
+    loadChildren: () => import('./usuario/usuario-edit/usuario-edit.module').then( m => m.UsuarioEditPageModule)
+  },
+  {
+    path: 'usuario-list',
+    loadChildren: () => import('./usuario/usuario-list/usuario-list.module').then( m => m.UsuarioListPageModule)
+  },
+  {
+    path: 'usuario-add',
+    loadChildren: () => import('./usuario/usuario-add/usuario-add.module').then( m => m.UsuarioAddPageModule)
+  },
+  {
+    path: 'usuario-all',
+    loadChildren: () => import('./usuario/usuario-all/usuario-all.module').then( m => m.UsuarioAllPageModule)
+  },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
 
 ];
 

@@ -23,10 +23,7 @@ const routes: Routes = [
     path: 'libros',
     loadChildren: () => import('./libros/libros.module').then( m => m.LibrosPageModule)
   },
-  {
-    path: '**',
-    loadChildren: () => import('./not-fount/not-fount.module').then( m => m.NotFountPageModule)
-  },
+ 
   {
     path: 'product-add',
     loadChildren: () => import('./producto/product-add/product-add.module').then( m => m.ProductAddPageModule)
@@ -78,6 +75,10 @@ const routes: Routes = [
   {
     path: 'usuario-all',
     loadChildren: () => import('./usuario/usuario-all/usuario-all.module').then( m => m.UsuarioAllPageModule)
+  },
+  {
+    path: '**',
+    loadChildren: () => import('./not-fount/not-fount.module').then( m => m.NotFountPageModule)
   },
   {
     path: '',

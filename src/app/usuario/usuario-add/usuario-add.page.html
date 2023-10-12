@@ -7,23 +7,23 @@
 <ion-content padding>
   <form [formGroup]="UsuarioForm" (ngSubmit)="onFormSubmit(UsuarioForm.value)">
     <ion-item>
-      <ion-label position="floating">Email</ion-label>
+      <ion-label >Email</ion-label>
       <ion-input type="text" [(ngModel)]="usuario.email" formControlName="email"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
+      <ion-label >Nombre</ion-label>
       <ion-input type="text" [(ngModel)]="usuario.nombre" formControlName="nombre"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Apellido</ion-label>
+      <ion-label >Apellido</ion-label>
       <ion-input type="text" [(ngModel)]="usuario.apellido" formControlName="apellido"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Edad</ion-label>
+      <ion-label >Edad</ion-label>
       <ion-input type="number" [(ngModel)]="usuario.edad" formControlName="edad"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Numero Cel.</ion-label>
+      <ion-label >Numero Cel.</ion-label>
       <ion-input type="number" [(ngModel)]="usuario.fonoContacto" formControlName="fonoContacto"></ion-input>
     </ion-item>
 

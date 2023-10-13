@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>listar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>
+      <font color="red">Utilizando un Accesador</font>
+    </ion-label>
+  </ion-item>
+  <ion-list padding>
+    <ion-item *ngFor="let item of getRegistros">
+      <ion-icon name="star" slot="start"></ion-icon>
+      <ion-label>{{item.nombres}}</ion-label>
+      <ion-label>{{item.apellidos}}</ion-label>
+      <ion-icon name="information-circle" slot="end"></ion-icon>
+      <ion-button [routerLink]="['/cliente/leer']">Sin ID</ion-button><br />
+      <ion-button [routerLink]="['/cliente/leer',item.id]">Con ID</ion-button><br />
+    </ion-item>
+  </ion-list>
+
+
+
+
+  <ion-item>
+    <ion-label>
+      <font color="red">Utilizando un método</font>
+    </ion-label>
+  </ion-item>
+  <ion-list padding>
+    <ion-item *ngFor="let item of getRegistrosMetodo()">
+      <ion-icon name="star" slot="start"></ion-icon>
+      <ion-label>{{item.nombres}}</ion-label>
+      <ion-label>{{item.apellidos}}</ion-label>
+      <ion-icon name="information-circle" slot="end"></ion-icon>
+      <ion-button [routerLink]="['/cliente/leer']">Sin ID</ion-button><br />
+      <ion-button [routerLink]="['/cliente/leer',item.id]">Con ID</ion-button><br />
+    </ion-item>
+  </ion-list>
+
+
+
+  <ion-item>
+    <ion-label>
+      <font color="red">Utilizando una injección Pública</font>
+    </ion-label>
+  </ion-item>
+  <ion-list padding>
+    <ion-item *ngFor="let item of this.cliServPublic.getRegistrosCopia">
+      <ion-icon name="star" slot="start"></ion-icon>
+      <ion-label>{{item.nombres}}</ion-label>
+      <ion-label>{{item.apellidos}}</ion-label>
+      <ion-icon name="information-circle" slot="end"></ion-icon>
+     
+      <ion-button [routerLink]="['/cliente/leer']">Sin ID</ion-button><br />
+      <ion-button [routerLink]="['/cliente/leer',item.id]">Con ID</ion-button><br />
+    </ion-item>
+  </ion-list>
+</ion-content>

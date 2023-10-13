@@ -16,59 +16,79 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
 })
 export class UsuarioService {
 
-  constructor(private http: HttpClient) { }
+  private registros: ClUsuario[] =
+  [{ id: "122",correo: "picapiedrax@harrys.cl", nombres: "Juan Gabriel", apellidos: "Picapiedras",edad:20, fonoContacto:965245673,  clave: "1134" }
+      , {id: "128",correo: "patox@harrys.cl", nombres: "Tito Gabril", apellidos: "Picapiedras",edad:21, fonoContacto:965235273,  clave: "1134"} 
+      , {id: "123",correo: "roto@harrys.cl", nombres: "marco Gabril", apellidos: "Picapiedras",edad:23, fonoContacto:965246793,  clave: "1134"} 
+]
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error("handleError Harrys", error); 
-      return of(result as T);
-    };
-  }
+constructor() {
+  console.log("Inicio Servicio****************}")
+}
 
-    addUsuario(usuario: ClUsuario): Observable<ClUsuario> {
-      console.log("Res-api Enviando AddUsuario : ", usuario);
-      return this.http.post<ClUsuario>(apiUrl, usuario, httpOptions)
-      .pipe(
-        tap((usuario: ClUsuario) => console.log('added usuario w/:', usuario)),
-        catchError(this.handleError<ClUsuario>('addUsuario'))
-      );
-  }
+getRegistroMetodo(): ClUsuario[] {
+  return this.registros
+}
 
-    getUsuarios(): Observable<ClUsuario[]> {
-     console.log("getUsuario ()");
-      return this.http.get<ClUsuario[]>(apiUrl)
-       .pipe(
-         tap(heroes => console.log('fetched usuarios')),
-          catchError(this.handleError('getUsuarios', []))
-      );
-  }
+get getRegistros(): ClUsuario[] {
+  return [...this.registros]
+}
 
-    getUsuario(id: String): Observable<ClUsuario> {
-    console.log("getUsuario ID:" + id);
-    return this.http.get<ClUsuario>(apiUrl + "/" + id)
-      .pipe(
-        tap(_ => console.log('fetched Usuario id=${id}')),
-        catchError(this.handleError<ClUsuario>('getUsuario id=${id}'))
-      );
-  }
-   
-  deleteUsuario(id: number): Observable<ClUsuario> {
-    return this.http.delete<ClUsuario>(apiUrl + "/" + id, httpOptions)
-      .pipe(
-        tap(_ => console.log('deleted usuario id=${id}')),
-        catchError(this.handleError<ClUsuario>('deleteUsuario'))
-      );
-  }
 
-  updateUsuario(id: number, usuario : ClUsuario): Observable<ClUsuario> {
-    return this.http.put<ClUsuario>(apiUrl + "/" + id, usuario , httpOptions)
-      .pipe(
-        tap(_ => console.log('updated usuario id=${id}')),
-        catchError(this.handleError<any>('updateUsuario'))
-      );
-  }
+get getRegistrosCopia(): ClUsuario[] {
 
-   
+  return [...this.registros]
+}
+
+get getRegistrosReferencia(): ClUsuario[] {
+  return this.registros
+}
+
+agregarServicio(reg:ClUsuario){
+  this.registros.push(reg)    
+  console.log("Registro Agregars:",this.registros)
+}
+actualizarServicio(id:string,reg:ClUsuario){
+  console.log("buscando")
+
+  let found = this.registros.find((element) => element.id == id);
+
+  if (found){
+      found!.apellidos=reg.apellidos
+      found!.nombres=reg.nombres
+      found!.clave=reg.clave
+      found!.correo=reg.correo
+      found!.fonoContacto=reg.fonoContacto
+      found!.edad=reg.edad
+      console.log("found",found)
+      console.log("Registro Actualizar:",this.registros)
+  }
+}
+eliminarServicio(id:string){
+  console.log("Registro Eliminar:",this.registros)
+  for (let i = this.registros.length-1; i >= 0; i--) {
+      console.log("busco",i,id,this.registros[i].id)
+      if (this.registros[i].id === id) {
+          let spliced = this.registros.splice(i, 1);
+          console.log(" Eliminado: " , this.registros,[i]);
+          
+      }
+  }
+  console.log("Registro Eliminar:",this.registros)
+}
+
+
+leerServicio(id:string):ClUsuario{
+  for (let i = 0; i < this.registros.length; i++) {
+      if (this.registros[i].id === id) {
+
+          return this.registros[i]
+      }
+  }        
+
+ 
+  return {id:"",correo:"", nombres:"",apellidos:"",edad:0 ,fonoContacto:0 ,clave:""}
+}
 
 
 }

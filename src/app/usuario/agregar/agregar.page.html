@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>agregar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-item lines="full">   
+   <ion-item lines="full">
+      <ion-label position="floating">Correo electrónico</ion-label>
+      <ion-input type="text" name="txCorreo" [(ngModel)]="registro.correo" required></ion-input>
+    </ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" name="txNombres" [(ngModel)]="registro.nombres" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input type="text" name="txApellidos" [(ngModel)]="registro.apellidos" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Edad</ion-label>
+      <ion-input type="number" name="txApellidos" [(ngModel)]="registro.edad" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Numero</ion-label>
+      <ion-input type="number" name="txApellidos" [(ngModel)]="registro.fonoContacto" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" name="txClave" [(ngModel)]="registro.clave" required></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="grabar()" color="danger" expand="block">Crear Cuenta</ion-button>
+      </ion-col>
+    </ion-row>
+  {{registro.nombres}}
+  </form>
+</ion-content>
+

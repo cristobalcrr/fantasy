@@ -48,42 +48,35 @@ const routes: Routes = [
     path: 'product-list',
     loadChildren: () => import('./producto/product-list/product-list.module').then( m => m.ProductListPageModule)
   },
-  {
-    path: 'folder',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  },
-  {
-    path: 'ususario-add',
-    loadChildren: () => import('./usuario/usuario-add/usuario-add.module').then( m => m.UsuarioAddPageModule)
-  },
-  {
-    path: 'usuario-detail',
-    loadChildren: () => import('./usuario/usuario-detail/usuario-detail.module').then( m => m.UsuarioDetailPageModule)
-  },
-  {
-    path: 'usuario-edit',
-    loadChildren: () => import('./usuario/usuario-edit/usuario-edit.module').then( m => m.UsuarioEditPageModule)
-  },
-  {
-    path: 'usuario-list',
-    loadChildren: () => import('./usuario/usuario-list/usuario-list.module').then( m => m.UsuarioListPageModule)
-  },
-  {
-    path: 'usuario-add',
-    loadChildren: () => import('./usuario/usuario-add/usuario-add.module').then( m => m.UsuarioAddPageModule)
-  },
-  {
-    path: 'usuario-all',
-    loadChildren: () => import('./usuario/usuario-all/usuario-all.module').then( m => m.UsuarioAllPageModule)
-  },
-  {
-    path: '**',
-    loadChildren: () => import('./not-fount/not-fount.module').then( m => m.NotFountPageModule)
-  },
+ 
   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
+  },
+  {
+    path: 'agregar',
+    loadChildren: () => import('./usuario/agregar/agregar.module').then( m => m.AgregarPageModule)
+  },
+  {
+    path: 'actualizar',
+    loadChildren: () => import('./usuario/actualizar/actualizar.module').then( m => m.ActualizarPageModule)
+  },
+  {
+    path: 'eliminar',
+    loadChildren: () => import('./usuario/eliminar/eliminar.module').then( m => m.EliminarPageModule)
+  },
+  {
+    path: 'lerr',
+    loadChildren: () => import('./usuario/lerr/lerr.module').then( m => m.LerrPageModule)
+  },
+  {
+    path: 'listar',
+    loadChildren: () => import('./usuario/listar/listar.module').then( m => m.ListarPageModule)
+  },
+  {
+    path: '**',
+    loadChildren: () => import('./not-fount/not-fount.module').then( m => m.NotFountPageModule)
   },
 
 ];

@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { LerrPageRoutingModule } from './lerr-routing.module';
 
 import { LerrPage } from './lerr.page';
+import { ReactiveFormsModule } from '@angular/forms'; 
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LerrPageRoutingModule
+    LerrPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [LerrPage]
 })

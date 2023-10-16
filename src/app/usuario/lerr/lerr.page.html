@@ -5,49 +5,33 @@
 </ion-header>
 
 <ion-content>
-  <form>
-    <ion-item lines="full">
-      <ion-label position="floating">ID</ion-label>
-      <ion-input type="text" name="txId" [(ngModel)]="id" required></ion-input>
-    </ion-item>   
-   <ion-item lines="full">
-      <ion-label position="floating">Correo electrónico</ion-label>
-      <ion-input type="text" name="txCorreo" [(ngModel)]="registro.correo" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text" name="txNombres" [(ngModel)]="registro.nombres" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Apellido</ion-label>
-      <ion-input type="text" name="txApellidos" [(ngModel)]="registro.apellidos" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Edad</ion-label>
-      <ion-input type="number" name="txedad" [(ngModel)]="registro.edad" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Numero</ion-label>
-      <ion-input type="number" name="txFono" [(ngModel)]="registro.fonoContacto" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" name="txClave" [(ngModel)]="registro.clave" required></ion-input>
-    </ion-item>
-    <ion-row>
-      <ion-col>
-        <ion-button disabled={{buttonLeerDisabled}} (click)="leer()" color="danger" expand="block">Leer Registro</ion-button>
-        <ion-button (click)="grabarActualizarAutomatico()" color="danger" expand="block">Grabar Automático</ion-button>
-        <ion-button disabled={{buttonEliminarDisabled}} (click)="eliminar()" color="danger" expand="block">Eliminar Registro</ion-button>
-        <br><br><br>
-        <ion-button disabled={{buttonCrearDisabled}} (click)="grabar()" color="danger" expand="block">Crear Registro</ion-button>
-        <ion-button disabled={{buttonActualizarDisabled}} (click)="actualizar()" color="danger" expand="block">Actualizar Registro</ion-button>
-      </ion-col>
-      
-    </ion-row>
-    <ion-row>
-      <ion-label class="ion-text-wrap" position="floating" color="danger"> {{msgError}}</ion-label>
-    </ion-row>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{Usuario.correo}}</ion-card-title>
+    </ion-card-header>
 
-  </form>
+    <ion-card-header>
+      <ion-card-title>{{Usuario.nombres}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-header>
+      <ion-card-title>{{Usuario.apellidos}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <p>Edad : </p>
+        <p>{{Usuario.edad | currency}}</p>
+      </ion-item>
+      <ion-item>
+        <p>Numero : </p>
+        <p>{{Usuario.fonoContacto}}</p>
+      </ion-item>
+      <ion-card-header>
+        <ion-card-title>{{Usuario.clave}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-button type="button" shape="round" color="primary" expand="block" href="/actualizar/{{Usuario.id}}">Editar</ion-button>
+      <ion-button type="button" shape="round" color="danger" expand="block" (click)="delete(Usuario.id)">Eliminar</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

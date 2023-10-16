@@ -47,18 +47,11 @@ export class ProductEditPage implements OnInit {
   async onFormSubmit(form: NgForm) {
     console.log("onFormSubmit ID:" + this.id)
     this.producto.id = this.id;
-    /*this.producto.nombre = form.prod_name;
-    this.producto.descripcion = form.prod_desc;
-    this.producto.precio = form.prod_price;
-    this.producto.cantidad = form.prod_cantidad;
-    */
-    // si envio form, envio los nombres del campo del formulario
-    //await this.restApi.updateProduct(this.id, form)
+
     await this.restApi.updateProduct(this.id, this.producto)
       .subscribe({
         next: (res) => {
           let id = res['id'];
-          //this.router.navigate([ 'detail', { outlets: { details: id }} ]);
           this.router.navigate(['/product-detail/' + this.id]);
         }
         , complete: () => { }
@@ -67,23 +60,17 @@ export class ProductEditPage implements OnInit {
 
   }
 
-  // Método que permite leer el producto
   async getProduct(id: number) {
-    // Crea Wait
       const loading = await this.loadingController.create({
         message: 'Loading...'
       });
-      // Muestra Wait
       await loading.present();
-      // Obtiene el Observable
       await this.restApi.getProduct(id + "")
         .subscribe({
           next: (data) => {
             console.log("getProductID data****");
             console.log(data);
-            // Si funciona Rescata el los datos
             this.id = data.id;
-            // Actualiza los datos
             this.productForm.setValue({
               prod_name: data.nombre,
               prod_desc: data.descripcion,
@@ -102,7 +89,6 @@ export class ProductEditPage implements OnInit {
     }
   
 
- // Método que actualiza el producto por medio de submit
   async presentAlertConfirm(msg: string) {
     const alert = await this.alertController.create({
       header: 'Warning!',
@@ -111,7 +97,6 @@ export class ProductEditPage implements OnInit {
         {
           text: 'Okay',
           handler: () => {
-            //Si funciona el actualizar navega a listar
             this.router.navigate(['/product-list/']);
           }
         }

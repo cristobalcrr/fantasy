@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [
+const routes: Routes = [  
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
@@ -29,19 +34,15 @@ const routes: Routes = [
     loadChildren: () => import('./producto/product-add/product-add.module').then( m => m.ProductAddPageModule)
   },
   {
-    path: 'product-add',
-    loadChildren: () => import('./producto/product-add/product-add.module').then( m => m.ProductAddPageModule)
-  },
-  {
     path: 'product-all',
     loadChildren: () => import('./producto/product-all/product-all.module').then( m => m.ProductAllPageModule)
   },
   {
-    path: 'product-detail',
+    path: 'product-detail/:id',
     loadChildren: () => import('./producto/product-detail/product-detail.module').then( m => m.ProductDetailPageModule)
   },
   {
-    path: 'product-edit',
+    path: 'product-edit/:id',
     loadChildren: () => import('./producto/product-edit/product-edit.module').then( m => m.ProductEditPageModule)
   },
   {
@@ -49,17 +50,13 @@ const routes: Routes = [
     loadChildren: () => import('./producto/product-list/product-list.module').then( m => m.ProductListPageModule)
   },
  
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
+
   {
     path: 'agregar',
     loadChildren: () => import('./usuario/agregar/agregar.module').then( m => m.AgregarPageModule)
   },
   {
-    path: 'actualizar',
+    path: 'actualizar/:id',
     loadChildren: () => import('./usuario/actualizar/actualizar.module').then( m => m.ActualizarPageModule)
   },
   {
@@ -67,7 +64,7 @@ const routes: Routes = [
     loadChildren: () => import('./usuario/eliminar/eliminar.module').then( m => m.EliminarPageModule)
   },
   {
-    path: 'lerr',
+    path: 'lerr/:id',
     loadChildren: () => import('./usuario/lerr/lerr.module').then( m => m.LerrPageModule)
   },
   {

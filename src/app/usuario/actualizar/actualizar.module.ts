@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ActualizarPageRoutingModule } from './actualizar-routing.module';
 
 import { ActualizarPage } from './actualizar.page';
+import { ReactiveFormsModule } from '@angular/forms'; 
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ActualizarPageRoutingModule
+    ActualizarPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [ActualizarPage]
 })

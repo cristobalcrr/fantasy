@@ -1,29 +1,104 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingController, AlertController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+
+import { ClUsuario } from '../model/ClUsuario';
 import { UsuarioService } from '../usuario.service';
 
 @Component({
-  selector: 'app-actualizar',
+  selector: 'app-usuario-edit',
   templateUrl: './actualizar.page.html',
   styleUrls: ['./actualizar.page.scss'],
 })
-export class ActualizarPage {
-  id = "5"
-  registro = {
-      correo: "harrys@ciudal.cl",
-      nombres: "Harrys",
-      apellidos: "El Magnifico",
-      edad: 20,
-      fonoContacto:96357252,
-      clave: "macarena",
+export class ActualizarPage implements OnInit {
+
+  UsuarioForm!: FormGroup;
+  usuario: ClUsuario = { id: 1, correo: '', nombres: '', apellidos: '', edad: 0 ,fonoContacto:0, clave:'' };
+  id: any = '';
+
+  constructor(public restApi: UsuarioService,
+    public loadingController: LoadingController,
+    
+    public alertController: AlertController,
+    public route: ActivatedRoute,
+    public router: Router,
+    private formBuilder: FormBuilder) { }
+
+  ngOnInit() {
+    console.log("ngOnInit ID:" + this.route.snapshot.params['id']);
+    this.getUsuario(this.route.snapshot.params['id']);
+    this.UsuarioForm = this.formBuilder.group({
+      'U-correo': [null, Validators.required],
+      'U-nombres': [null, Validators.required],
+      'U-apellidos': [null, Validators.required],
+      'U-edad': [null, Validators.required],
+      'U-fonoContacto': [null, Validators.required],
+      'U-clave': [null, Validators.required]
+    });
   }
+  async onFormSubmit(form: NgForm) {
+    console.log("onFormSubmit ID:" + this.id)
+    this.usuario.id = this.id;
 
-  constructor(private cliServ:UsuarioService) { }
-
-  grabar() { 
-
-      this.cliServ.actualizarServicio(this.id, this.registro)
-  }
-
+    await this.restApi.updateUsuario(this.id, this.usuario)
+    .subscribe({
+      next: (res) => {
+        let id = res['id'];
+        this.router.navigate(['/lerr/' + this.id]);
+      }
+      , complete: () => { }
+      , error: (err) => { console.log(err); }
+    })
 
 }
+
+async getUsuario(id: number) {
+    const loading = await this.loadingController.create({
+      message: 'Loading...'
+    });
+    await loading.present();
+    await this.restApi.getUsuario(id + "")
+      .subscribe({
+        next: (data) => {
+          console.log("getUsuarioID data****");
+          console.log(data);
+          this.id = data.id;
+          this.UsuarioForm.setValue({
+            correo: data.correo,
+            nombre: data.nombres,
+            apellido: data.apellidos,
+            edad: data.edad,
+            numero: data.fonoContacto,
+            clave: data.clave
+
+          });
+          loading.dismiss();
+        }
+        , complete: () => { }
+        , error: (err) => {
+          console.log("getUsuarioID Errr****+");
+          console.log(err);
+          loading.dismiss();
+        }
+      })
+  }
+
+  async presentAlertConfirm(msg: string) {
+    const alert = await this.alertController.create({
+      header: 'Warning!',
+      message: msg,
+      buttons: [
+        {
+          text: 'Okay',
+          handler: () => {
+            this.router.navigate(['/listar/']);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+}
+
 

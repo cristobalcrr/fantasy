@@ -29,14 +29,15 @@ export class ActualizarPage implements OnInit {
     console.log("ngOnInit ID:" + this.route.snapshot.params['id']);
     this.getUsuario(this.route.snapshot.params['id']);
     this.UsuarioForm = this.formBuilder.group({
-      'U-correo': [null, Validators.required],
-      'U-nombres': [null, Validators.required],
-      'U-apellidos': [null, Validators.required],
-      'U-edad': [null, Validators.required],
-      'U-fonoContacto': [null, Validators.required],
-      'U-clave': [null, Validators.required]
+      "U_correo": [null, Validators.required],
+      "U_nombres": [null, Validators.required],
+      "U_apellidos": [null, Validators.required],
+      "U_edad": [null, Validators.required],
+      "U_fonoContacto": [null, Validators.required],
+      "U_clave": [null, Validators.required]
     });
   }
+
   async onFormSubmit(form: NgForm) {
     console.log("onFormSubmit ID:" + this.id)
     this.usuario.id = this.id;
@@ -65,12 +66,12 @@ async getUsuario(id: number) {
           console.log(data);
           this.id = data.id;
           this.UsuarioForm.setValue({
-            correo: data.correo,
-            nombre: data.nombres,
-            apellido: data.apellidos,
-            edad: data.edad,
-            numero: data.fonoContacto,
-            clave: data.clave
+            U_correo: data.correo,
+            U_nombres: data.nombres,
+            U_apellidos: data.apellidos,
+            U_edad: data.edad,
+            U_fonoContacto: data.fonoContacto,
+            U_clave: data.clave
 
           });
           loading.dismiss();

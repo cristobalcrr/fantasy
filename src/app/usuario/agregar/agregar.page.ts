@@ -15,7 +15,7 @@ export class agregarPage implements OnInit {
     UsuarioForm!: FormGroup;
   
     usuario: ClUsuario ={
-      id : 15
+      id : 100
       ,correo : 'alvarez@gmail.com'
       ,nombres : 'hugo'
       ,apellidos : 'alvarez'
@@ -60,7 +60,7 @@ export class agregarPage implements OnInit {
           }
           
           console.log("Next Agrego SIIIIII Router saltaré ;",this.router);
-          this.router.navigate(['/usuario-list']);
+          this.router.navigate(['/listar']);
         }
         , complete: () => { }
         , error: (err) => {

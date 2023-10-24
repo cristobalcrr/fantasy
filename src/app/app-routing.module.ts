@@ -71,11 +71,20 @@ const routes: Routes = [
     path: 'listar',
     loadChildren: () => import('./usuario/listar/listar.module').then( m => m.ListarPageModule)
   },
+
   {
+    path: 'registro-foto',
+    loadChildren: () => import('./registro-foto/registro-foto.module').then( m => m.RegistroFotoPageModule)
+  },
+
+  {
+    path: 'mapa',
+    loadChildren: () => import('./mapa/mapa.module').then( m => m.MapaPageModule)
+  },
+    {
     path: '**',
     loadChildren: () => import('./not-fount/not-fount.module').then( m => m.NotFountPageModule)
   },
-
 ];
 
 @NgModule({

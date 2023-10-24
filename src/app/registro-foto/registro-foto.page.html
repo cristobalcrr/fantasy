@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>registro_foto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div>
+    <button (click)="takePicture()">Tomar Foto</button>
+  </div>
+  
+  
+  <div>
+    <img #imageElement alt="Imagen Capturada">
+  </div>
+  
+</ion-content>

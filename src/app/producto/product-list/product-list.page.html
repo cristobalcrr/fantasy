@@ -18,8 +18,8 @@
       <ion-icon name="star" slot="start"></ion-icon>
       <ion-label>{{p.precio | currency:' ':true:'1.0-2'}}</ion-label>
       <ion-icon name="information-circle" slot="end"></ion-icon>
-      <ion-button [routerLink]="['/product-edit/',p.id]">Edit</ion-button><br />
-      <ion-button [routerLink]="['/product-detail',p.id]">Detail</ion-button><br />
+      <ion-button [routerLink]="['/product-edit/',p.idProducto]">Edit</ion-button><br />
+      <ion-button [routerLink]="['/product-detail',p.idProducto]">Detail</ion-button><br />
     </ion-item>
   </ion-list>
 

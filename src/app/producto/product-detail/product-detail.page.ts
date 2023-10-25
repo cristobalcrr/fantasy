@@ -16,14 +16,26 @@ export class ProductDetailPage implements OnInit {
   // Creamos registro a utilizar en el Html
  // producto: ClProducto = {
   producto: ClProducto = {
-    id: 5151,
-    nombre: 'harry potter y la piedra folosofal',
+    idProducto: 5151,
+    nombreprod: 'harry potter y la piedra folosofal',
     precio: 21990,
-    fecha: new Date(),
     cantidad: 20,
     editorial: 'salammandra',
-    descripcion: ''
-};
+    categoria: 'fantasia',
+    codigo: '08-g1',
+    fechaNacimiento: 0,
+    rut: 0,
+    dv: 0,
+    enfermedad: '',
+    fonocontacto: 0,
+    raza: '',
+    edad: 0,
+    altura: '',
+    hrini: 0,
+    hrfin: 0,
+    direccion: '',
+    fCreacion: 0
+  };
 
 
   // Injectamos Librerías a utilizar
@@ -42,12 +54,12 @@ export class ProductDetailPage implements OnInit {
 
 // Método que permite leer el producto
   async getProduct() {
-    console.log("getProduct **************** ParamMap ID:" + this.route.snapshot.paramMap.get('id'));
+    console.log("getProduct **************** ParamMap ID:" + this.route.snapshot.paramMap.get('idProducto'));
     // Creamos un Wait
     const loading = await this.loadingController.create({ message: 'Loading...' });
     // Mostramos el Wait
     await loading.present();
-    await this.restApi.getProduct(this.route.snapshot.paramMap.get('id')!)
+    await this.restApi.getProduct(this.route.snapshot.paramMap.get('idProducto')!)
       .subscribe({
         next: (res) => {
           console.log("Data *****************");
@@ -66,21 +78,21 @@ export class ProductDetailPage implements OnInit {
   }
 
   // El Html invoca el método delete
-  async delete(id: number) {
+  async delete(idProducto: number) {
     // Confirma Primero
-    this.presentAlertConfirm(id, 'Confirme la Eliminación, De lo cantrario Cancele');
+    this.presentAlertConfirm(idProducto, 'Confirme la Eliminación, De lo cantrario Cancele');
   }
   // Creamos una rutina para confirmar la eliminación
-  async presentAlertConfirm(id: number, msg: string) {
+  async presentAlertConfirm(idProducto: number, msg: string) {
     const alert = await this.alertController.create({
       header: 'Warning!', // Título
       message: msg,   // Mensaje
       buttons: [   // Botones
         {
-          text: 'Eliminar : ' + id + " OK",
+          text: 'Eliminar : ' + idProducto + " OK",
           handler: () => { // Si presiona ejecuta esto
             //this.router.navigate(['']);
-            this.deleteConfirmado(id)
+            this.deleteConfirmado(idProducto)
           }
         }
       ]
@@ -90,13 +102,13 @@ export class ProductDetailPage implements OnInit {
   }
 
   // Es invocado desde el Alert
-  async deleteConfirmado(id: number) {
-    alert("Eliminando " + id)
+  async deleteConfirmado(idProducto: number) {
+    alert("Eliminando " + idProducto)
     const loading = await this.loadingController.create({
       message: 'Loading...'
     });
     await loading.present();
-    await this.restApi.deleteProduct(id)
+    await this.restApi.deleteProduct(idProducto)
       .subscribe({
         next: (res) => {
           console.log("Error DetailProduct Página", res);

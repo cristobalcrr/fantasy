@@ -17,8 +17,22 @@ export class ProductEditPage implements OnInit {
   // FormGroup para validaciones
   productForm!: FormGroup;
   // Esquema a utilizar en el Html
-  producto: ClProducto = {id:1, nombre: '', descripcion: '', precio:0, fecha: new Date(), cantidad:0, editorial:''};;
-  id: any = '';
+  producto: ClProducto = {idProducto: 1, nombreprod: '', precio: 0, cantidad: 0, editorial: '', categoria: '',
+  codigo: '',
+  fechaNacimiento: 0,
+  rut: 0,
+  dv: 0,
+  enfermedad: '',
+  fonocontacto: 0,
+  raza: '',
+  edad: 0,
+  altura: '',
+  hrini: 0,
+  hrfin: 0,
+  direccion: '',
+  fCreacion: 0
+};;
+  idProducto: any = '';
   //prod_name: string = '';
   //prod_desc: string = '';
   //prod_price:number=null;
@@ -33,26 +47,27 @@ export class ProductEditPage implements OnInit {
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    console.log("ngOnInit ID:" + this.route.snapshot.params['id']);
+    console.log("ngOnInit ID:" + this.route.snapshot.params['idProducto']);
     // Relizamos lectura
-    this.getProduct(this.route.snapshot.params['id']);
+    this.getProduct(this.route.snapshot.params['idProducto']);
     // Especificamos Validaciones por medio de FormGroup
     this.productForm = this.formBuilder.group({
-      'prod_name': [null, Validators.required],
-      'prod_desc': [null, Validators.required],
-      'prod_price': [null, Validators.required],
-      'prod_cantidad': [null, Validators.required]
+      "prod_name": [null, Validators.required],
+        'prod_price': [null, Validators.required],
+        'prod_edito': [null, Validators.required],
+        'prod_cantidad': [null, Validators.required],
+        'prod_cante': [null, Validators.required]
     });
   }
   async onFormSubmit(form: NgForm) {
-    console.log("onFormSubmit ID:" + this.id)
-    this.producto.id = this.id;
+    console.log("onFormSubmit ID:" + this.idProducto)
+    this.producto.idProducto = this.idProducto;
 
-    await this.restApi.updateProduct(this.id, this.producto)
+    await this.restApi.updateProduct(this.idProducto, this.producto)
       .subscribe({
         next: (res) => {
-          let id = res['id'];
-          this.router.navigate(['/product-detail/' + this.id]);
+          let id = res['idProducto'];
+          this.router.navigate(['/product-detail/' + this.idProducto]);
         }
         , complete: () => { }
         , error: (err) => { console.log(err); }
@@ -60,22 +75,23 @@ export class ProductEditPage implements OnInit {
 
   }
 
-  async getProduct(id: number) {
+  async getProduct(idProducto: number) {
       const loading = await this.loadingController.create({
         message: 'Loading...'
       });
       await loading.present();
-      await this.restApi.getProduct(id + "")
+      await this.restApi.getProduct(idProducto + "")
         .subscribe({
           next: (data) => {
             console.log("getProductID data****");
             console.log(data);
-            this.id = data.id;
+            this.idProducto = data.idProducto;
             this.productForm.setValue({
-              prod_name: data.nombre,
-              prod_desc: data.descripcion,
-              prod_price: data.precio,
-              prod_cantidad: data.cantidad
+              "prod_name": data.nombreprod,
+              'prod_price': data.precio,
+              'prod_edito': data.editorial,
+              'prod_cantidad': data.cantidad,
+              'prod_cante': data.categoria
             });
             loading.dismiss();
           }

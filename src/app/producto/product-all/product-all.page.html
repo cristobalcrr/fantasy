@@ -14,18 +14,13 @@
   <ion-item>
     <ion-label>ID:</ion-label>
     <!-- Objeto producto creado en TypeScript -->
-    <ion-label>{{producto.id}}</ion-label>
+    <ion-label>{{producto.idProducto}}</ion-label>
   </ion-item>
 
   <ion-item>
     <ion-label>Nombre:</ion-label>
     <!-- ngModel, Objeto producto del TypeScript -->
-    <ion-input type="text" [(ngModel)]="producto.nombre">
-    </ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Descripción:</ion-label>
-    <ion-input type="text" [(ngModel)]="producto.descripcion">
+    <ion-input type="text" [(ngModel)]="producto.nombreprod">
     </ion-input>
   </ion-item>
   <ion-item>
@@ -36,6 +31,16 @@
   <ion-item>
     <ion-label>Cantidad: </ion-label>
     <ion-input type="number" [(ngModel)]="producto.cantidad">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Editorial:</ion-label>
+    <ion-input type="text" [(ngModel)]="producto.editorial">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Categoria:</ion-label>
+    <ion-input type="text" [(ngModel)]="producto.categoria">
     </ion-input>
   </ion-item>
   <!--si existe producto.id entonces se despliega delete -->
@@ -53,7 +58,7 @@
         Registro</ion-button>
 
 
-      <ion-button *ngIf="producto.id" ion-button full color="danger" item-end icon-right (click)="eliminar()">
+      <ion-button *ngIf="producto.idProducto" ion-button full color="danger" item-end icon-right (click)="eliminar()">
         Remove
         <ion-icon name="trash"></ion-icon>
         <!-- deleteProducto por medio del ID del producto-->

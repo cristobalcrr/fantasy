@@ -15,13 +15,25 @@ export class ProductAddPage implements OnInit {
 productForm!: FormGroup;
 
 producto: ClProducto = {
-    id: 5151,
-    nombre: 'harry potter y la piedra folosofal',
-    precio: 21990,
-    fecha: new Date(),
-    cantidad: 20,
-    editorial: 'salammandra',
-    descripcion: ''
+  idProducto: 5151,
+  codigo: '08-g1',
+  nombreprod: 'harry potter y la piedra folosofal',
+  precio: 21990,
+  cantidad: 20,
+  editorial: 'salammandra',
+  categoria: 'fantasia',
+  fechaNacimiento: 0,
+  rut: 0,
+  dv: 0,
+  enfermedad: '',
+  fonocontacto: 0,
+  raza: '',
+  edad: 0,
+  altura: '',
+  hrini: 0,
+  hrfin: 0,
+  direccion: '',
+  fCreacion: 0
 };
 
   constructor(private formBuilder: FormBuilder,
@@ -34,9 +46,10 @@ producto: ClProducto = {
   ngOnInit() {
     this.productForm = this.formBuilder.group({
         "prod_name": [null, Validators.required],
-        'prod_desc': [null, Validators.required],
         'prod_price': [null, Validators.required],
-        'prod_cantidad': [null, Validators.required]
+        'prod_edito': [null, Validators.required],
+        'prod_cantidad': [null, Validators.required],
+        'prod_cante': [null, Validators.required]
       });
   }
   async onFormSubmit(form: NgForm) {

@@ -1,0 +1,20 @@
+#map {
+    height: 70vh;
+    width: 100vw;
+    /* Agregar otros estilos si es necesario */
+  }
+  
+  #save-location-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #save-location-button:hover {
+    background-color: #0056b3;
+  }

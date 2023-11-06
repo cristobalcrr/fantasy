@@ -1,12 +1,39 @@
-<ion-header [translucent]="true">
-</ion-header>
-
-<ion-content scroll-y="false">
+<ion-menu contentId="main-content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Bienvenido NOMBRE</ion-title>
+      <ion-title>Menu Content</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-content class="ion-padding">
+    <ion-item>
+    <ion-button [routerLink]="['/perfil']" fill="clear">Perfil</ion-button>
+    </ion-item>
+    <ion-item>
+    <ion-button [routerLink]="['/mapa']" fill="clear">Registra tu ubicacion</ion-button>
+    </ion-item>
+    <ion-item>
+    <ion-button [routerLink]="['/product-add']" fill="clear">Vende tus libros </ion-button>
+    </ion-item>
+    <ion-item>
+    <ion-button [routerLink]="['/actualizar/']" fill="clear">Editar pefil</ion-button>
+    </ion-item>
+    <ion-item>
+    <ion-button [routerLink]="['/login']" fill="clear">Salir</ion-button>
+    </ion-item>
+  </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Bienvenido</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+<ion-content [fullscreen]="true">
     <app-buscador></app-buscador>
      
      <ion-card>
@@ -15,12 +42,12 @@
     </ion-card-header>
     <ion-card-content>
 
-    <ion-button color="success" expand="block">Fantasia</ion-button>
-    <ion-button color="danger" expand="block">Romance</ion-button>
-    <ion-button color="warning" expand="block">Accion</ion-button>
-    <ion-button color="secondary" expand="block">Comedia</ion-button>
-    <ion-button color="dark" expand="block">Terror</ion-button>
-    <ion-button color="tertiary" expand="block">Misterio</ion-button>
+      <ion-button color="success" expand="block" (click)="navigateToPage('fantasia')">Fantasía</ion-button>
+      <ion-button color="danger" expand="block" (click)="navigateToPage('romance')">Romance</ion-button>
+      <ion-button color="warning" expand="block" (click)="navigateToPage('accion')">Accion</ion-button>
+      <ion-button color="secondary" expand="block" (click)="navigateToPage('comedia')">Comedia</ion-button>
+      <ion-button color="dark" expand="block" (click)="navigateToPage('terror')">Terror</ion-button>
+      <ion-button color="tertiary" expand="block" (click)="navigateToPage('misterio')">Misterio</ion-button>
     </ion-card-content>
   </ion-card>
   <ion-card>

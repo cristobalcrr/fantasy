@@ -1,17 +1,18 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>registro_foto</ion-title>
+    <ion-title>Registra tu foto</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-card>
   <div>
-    <button (click)="takePicture()">Tomar Foto</button>
+    <img #imageElement src="assets/img/vector-profile-line-black-icon.jpg" />
   </div>
-  
-  
+
   <div>
-    <img #imageElement alt="Imagen Capturada">
+    <button id="takePictureButton" (click)="takePicture()">Tomar Foto</button>
   </div>
-  
+</ion-card>
+  <button id="registerButton" [routerLink]="['/home']" fill="clear">Registrar</button>
 </ion-content>

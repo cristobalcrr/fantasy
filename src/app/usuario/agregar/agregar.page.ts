@@ -16,12 +16,12 @@ export class agregarPage implements OnInit {
   
     usuario: ClUsuario ={
       id : 100
-      ,correo : 'alvarez@gmail.com'
-      ,nombres : 'hugo'
-      ,apellidos : 'alvarez'
-      ,edad : 30
-      ,fonoContacto : 974247266
-      ,clave: 'hola'
+      ,correo : ''
+      ,nombres : ''
+      ,apellidos : ''
+      ,edad : 0
+      ,fonoContacto : 0
+      ,clave: ''
   
     };
   

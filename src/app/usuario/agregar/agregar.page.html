@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>agregar</ion-title>
+    <ion-title>Registrate</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -31,13 +31,9 @@
       <ion-input type="password" [(ngModel)]="usuario.clave" formControlName="U-clave"></ion-input>
     </ion-item>
 
-    <ion-button type="submit" shape="round" color="primary" expand="block"
+    <ion-button type="submit" shape="round" color="primary" expand="block" [routerLink]="['/registro-foto']" 
       [disabled]="!UsuarioForm.valid">Submit</ion-button>
   </form>
-  
-</ion-content>
-<ion-content>
-  <ion-button [routerLink]="['/registro-foto']" fill="clear">foto</ion-button>
   
 </ion-content>
 

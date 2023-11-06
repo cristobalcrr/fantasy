@@ -1,0 +1,46 @@
+/* Estilos para el contenedor principal */
+ion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  /* Estilos para el contenido dentro del contenedor */
+  div {
+    text-align: center;
+  }
+  
+  /* Estilos para la imagen */
+  img {
+    width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para el botón "Tomar Foto" */
+  #takePictureButton {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  /* Estilos para el botón "Registrar" */
+  #registerButton {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  

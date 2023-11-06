@@ -38,7 +38,7 @@ export class MapaPage implements OnInit {
 
   async createMap(mapRef: HTMLElement) {
     this.map = await GoogleMap.create({
-      id: 'my-map',
+      id: 'map',
       element: mapRef,
       apiKey: this.apiKey,
       config: {
@@ -63,8 +63,9 @@ export class MapaPage implements OnInit {
 
       await this.map.addMarker({
         coordinate: {
-          lat: markerLatitude,
-          lng: markerLongitude,
+          lat: this.latitude,
+          lng: this.longitude,
+
         },
         title: markerTitle,
       });

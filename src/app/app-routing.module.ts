@@ -81,9 +81,38 @@ const routes: Routes = [
     path: 'mapa',
     loadChildren: () => import('./mapa/mapa.module').then( m => m.MapaPageModule)
   },
-    {
+   
+  {
+    path: 'fantasia',
+    loadChildren: () => import('./categorias/fantasia/fantasia.module').then( m => m.FANTASIAPageModule)
+  },
+  {
+    path: 'romance',
+    loadChildren: () => import('./categorias/romance/romance.module').then( m => m.ROMANCEPageModule)
+  },
+  {
+    path: 'accion',
+    loadChildren: () => import('./categorias/accion/accion.module').then( m => m.ACCIONPageModule)
+  },
+  {
+    path: 'comedia',
+    loadChildren: () => import('./categorias/comedia/comedia.module').then( m => m.COMEDIAPageModule)
+  },
+  {
+    path: 'terror',
+    loadChildren: () => import('./terror/terror.module').then( m => m.TERRORPageModule)
+  },
+  {
+    path: 'misterio',
+    loadChildren: () => import('./categorias/misterio/misterio.module').then( m => m.MISTERIOPageModule)
+  },
+   {
     path: '**',
     loadChildren: () => import('./not-fount/not-fount.module').then( m => m.NotFountPageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },
 ];
 

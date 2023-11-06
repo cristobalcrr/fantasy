@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClProducto } from '../model/CLProducto';
@@ -46,6 +46,7 @@ producto: ClProducto = {
   ngOnInit() {
     this.productForm = this.formBuilder.group({
         "prod_name": [null, Validators.required],
+        "codigo": [null, Validators.required],
         'prod_price': [null, Validators.required],
         'prod_edito': [null, Validators.required],
         'prod_cantidad': [null, Validators.required],

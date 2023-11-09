@@ -18,17 +18,17 @@ export class ProductListPage implements OnInit {
     , public router: Router) { }
  
   ngOnInit() {
-    this.getProducts();
+    this.getProductos();
   }
 
-  async getProducts() {
+  async getProductos() {
     console.log("Entrando :getProducts");
     const loading = await this.loadingController.create({
       message: 'Harrys Loading...'
     });
     await loading.present();
     console.log("Entrando :");
-    await this.restApi.getProducts()
+    await this.restApi.getProductos()
       .subscribe({
         next: (res) => { 
           console.log("Res:" + res);

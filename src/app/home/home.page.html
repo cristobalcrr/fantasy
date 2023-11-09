@@ -15,10 +15,13 @@
     <ion-button [routerLink]="['/product-add']" fill="clear">Vende tus libros </ion-button>
     </ion-item>
     <ion-item>
-    <ion-button [routerLink]="['/actualizar/']" fill="clear">Editar pefil</ion-button>
+    <ion-button [routerLink]="['/product-list']" fill="clear">Mis Productos</ion-button>
     </ion-item>
     <ion-item>
-    <ion-button [routerLink]="['/login']" fill="clear">Salir</ion-button>
+    <ion-button [routerLink]="['/perfil']" fill="clear">Editar pefil</ion-button>
+    </ion-item>
+    <ion-item>
+    <ion-button (click)="logout()" fill="clear">Salir</ion-button>
     </ion-item>
   </ion-content>
 </ion-menu>
@@ -28,7 +31,7 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>Bienvenido</ion-title>
+      <ion-title>Bienvenido {{ userName }} </ion-title>
     </ion-toolbar>
   </ion-header>
 

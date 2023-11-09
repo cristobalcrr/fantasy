@@ -1,33 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
 })
-export class RegistroPage implements OnInit {
+export class RegistroPage {
+  Nombre: string = '';
+  Password: string = '';
+  Email: string = '';
+  Telefono: string = '';
+  Direccion: string = '';
 
-  nombre='';
-  Password='';
-  email='';
-  Telefono='';
-  Direccion='';
-  
+  constructor(private authService: AuthService, private navCtrl: NavController) {}
 
-  constructor() { }
-
-  ngOnInit() {
+  async register() {
+    if (this.validateFields()) {
+      const registered = await this.authService.register(this.Nombre, this.Password, this.Email, this.Telefono, this.Direccion);
+      if (registered) {
+        console.log('Usuario registrado correctamente', this.Nombre);
+        this.navCtrl.navigateRoot('/registro-foto'); // Redirige al usuario a la página de inicio después del registro.
+      } else {
+        console.log('Error al registrar el usuario');
+      }
+    }
   }
-  validarFormulario(): boolean {
-    // Validar que todos los campos estén completos
-    if(this.nombre === '' || (!/^(?=.*[0-9]{4})(?=.*[a-zA-Z]{3})(?=.*[A-Z]).{8,}$/.test(this.Password))  || this.email==='' || this.Telefono==='' || this.Direccion ==='') {
+
+  private validateFields(): boolean {
+    // Realiza la validación de campos aquí
+    if (!this.Nombre || !this.Password || !this.Email || !this.Telefono || !this.Direccion) {
+      console.log('Por favor, complete todos los campos.');
       return false;
     }
-        // Devolver true si el formulario es válido
-        return true;
-      }
-
+    // Puedes agregar más validaciones, como verificar el formato del correo electrónico o la longitud de la contraseña.
+    return true;
   }
-
-
-
+}

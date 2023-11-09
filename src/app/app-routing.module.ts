@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './my-guard.guard';
 
 const routes: Routes = [  
   {
@@ -9,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule), canActivate: [AuthGuard] 
   },
 
   {
@@ -57,11 +58,11 @@ const routes: Routes = [
   },
   {
     path: 'actualizar/:id',
-    loadChildren: () => import('./usuario/actualizar/actualizar.module').then( m => m.ActualizarPageModule)
+    loadChildren: () => import('./usuario/actualizar/actualizar.module').then( m => m.ActualizarPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'eliminar',
-    loadChildren: () => import('./usuario/eliminar/eliminar.module').then( m => m.EliminarPageModule)
+    loadChildren: () => import('./usuario/eliminar/eliminar.module').then( m => m.EliminarPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'lerr/:id',
@@ -79,40 +80,41 @@ const routes: Routes = [
 
   {
     path: 'mapa',
-    loadChildren: () => import('./mapa/mapa.module').then( m => m.MapaPageModule)
+    loadChildren: () => import('./mapa/mapa.module').then( m => m.MapaPageModule), canActivate: [AuthGuard]
   },
    
   {
     path: 'fantasia',
-    loadChildren: () => import('./categorias/fantasia/fantasia.module').then( m => m.FANTASIAPageModule)
+    loadChildren: () => import('./categorias/fantasia/fantasia.module').then( m => m.FANTASIAPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'romance',
-    loadChildren: () => import('./categorias/romance/romance.module').then( m => m.ROMANCEPageModule)
+    loadChildren: () => import('./categorias/romance/romance.module').then( m => m.ROMANCEPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'accion',
-    loadChildren: () => import('./categorias/accion/accion.module').then( m => m.ACCIONPageModule)
+    loadChildren: () => import('./categorias/accion/accion.module').then( m => m.ACCIONPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'comedia',
-    loadChildren: () => import('./categorias/comedia/comedia.module').then( m => m.COMEDIAPageModule)
+    loadChildren: () => import('./categorias/comedia/comedia.module').then( m => m.COMEDIAPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'terror',
-    loadChildren: () => import('./terror/terror.module').then( m => m.TERRORPageModule)
+    loadChildren: () => import('./terror/terror.module').then( m => m.TERRORPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'misterio',
-    loadChildren: () => import('./categorias/misterio/misterio.module').then( m => m.MISTERIOPageModule)
+    loadChildren: () => import('./categorias/misterio/misterio.module').then( m => m.MISTERIOPageModule), canActivate: [AuthGuard]
+  },
+
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule), canActivate: [AuthGuard]
   },
    {
     path: '**',
     loadChildren: () => import('./not-fount/not-fount.module').then( m => m.NotFountPageModule)
-  },
-  {
-    path: 'perfil',
-    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },
 ];
 

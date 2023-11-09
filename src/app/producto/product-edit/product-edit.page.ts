@@ -39,8 +39,10 @@ export class ProductEditPage implements OnInit {
   //prod_cantidad:number=null
 
   // Injectamos librerías
+
   constructor(public restApi: ProductServiceService,
     public loadingController: LoadingController,
+    
     public alertController: AlertController,
     public route: ActivatedRoute,
     public router: Router,
@@ -48,62 +50,61 @@ export class ProductEditPage implements OnInit {
 
   ngOnInit() {
     console.log("ngOnInit ID:" + this.route.snapshot.params['idProducto']);
-    // Relizamos lectura
-    this.getProduct(this.route.snapshot.params['idProducto']);
-    // Especificamos Validaciones por medio de FormGroup
+    this.getProductos(this.route.snapshot.params['idProducto']);
     this.productForm = this.formBuilder.group({
       "prod_name": [null, Validators.required],
-        'prod_price': [null, Validators.required],
-        'prod_edito': [null, Validators.required],
-        'prod_cantidad': [null, Validators.required],
-        'prod_cante': [null, Validators.required]
+      "prod_price": [null, Validators.required],
+      "prod_cantidad": [null, Validators.required],
+      "prod_edito": [null, Validators.required],
+      "prod_cate": [null, Validators.required]
     });
   }
+
   async onFormSubmit(form: NgForm) {
     console.log("onFormSubmit ID:" + this.idProducto)
     this.producto.idProducto = this.idProducto;
 
-    await this.restApi.updateProduct(this.idProducto, this.producto)
+    await this.restApi.updateProducto(this.idProducto, this.producto)
+    .subscribe({
+      next: (res) => {
+        let id = res['idProducto'];
+        this.router.navigate(['/lerr/' + this.idProducto]);
+      }
+      , complete: () => { }
+      , error: (err) => { console.log(err); }
+    })
+
+}
+
+async getProductos(idProducto: number) {
+    const loading = await this.loadingController.create({
+      message: 'Loading...'
+    });
+    await loading.present();
+    await this.restApi.getProducto(idProducto + "")
       .subscribe({
-        next: (res) => {
-          let id = res['idProducto'];
-          this.router.navigate(['/product-detail/' + this.idProducto]);
+        next: (data) => {
+          console.log("getProductoID data****");
+          console.log(data);
+          this.idProducto = data.idProducto;
+          this.productForm.setValue({
+            prod_name: data.nombreprod,
+            prod_price: data.precio,
+            prod_cantidad: data.cantidad,
+            prod_edito: data.editorial,
+            prod_cate: data.categoria
+
+          });
+          loading.dismiss();
         }
         , complete: () => { }
-        , error: (err) => { console.log(err); }
+        , error: (err) => {
+          console.log("getUsuarioID Errr****+");
+          console.log(err);
+          loading.dismiss();
+        }
       })
-
   }
-
-  async getProduct(idProducto: number) {
-      const loading = await this.loadingController.create({
-        message: 'Loading...'
-      });
-      await loading.present();
-      await this.restApi.getProduct(idProducto + "")
-        .subscribe({
-          next: (data) => {
-            console.log("getProductID data****");
-            console.log(data);
-            this.idProducto = data.idProducto;
-            this.productForm.setValue({
-              "prod_name": data.nombreprod,
-              'prod_price': data.precio,
-              'prod_edito': data.editorial,
-              'prod_cantidad': data.cantidad,
-              'prod_cante': data.categoria
-            });
-            loading.dismiss();
-          }
-          , complete: () => { }
-          , error: (err) => {
-            console.log("getProductID Errr****+");
-            console.log(err);
-            loading.dismiss();
-          }
-        })
-    }
-  
 
   async presentAlertConfirm(msg: string) {
     const alert = await this.alertController.create({
@@ -113,13 +114,11 @@ export class ProductEditPage implements OnInit {
         {
           text: 'Okay',
           handler: () => {
-            this.router.navigate(['/product-list/']);
+            this.router.navigate(['/listar/']);
           }
         }
       ]
     });
     await alert.present();
   }
-
 }
-

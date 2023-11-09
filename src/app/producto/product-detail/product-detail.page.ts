@@ -59,7 +59,7 @@ export class ProductDetailPage implements OnInit {
     const loading = await this.loadingController.create({ message: 'Loading...' });
     // Mostramos el Wait
     await loading.present();
-    await this.restApi.getProduct(this.route.snapshot.paramMap.get('idProducto')!)
+    await this.restApi.getProducto(this.route.snapshot.paramMap.get('idProducto')!)
       .subscribe({
         next: (res) => {
           console.log("Data *****************");
@@ -108,7 +108,7 @@ export class ProductDetailPage implements OnInit {
       message: 'Loading...'
     });
     await loading.present();
-    await this.restApi.deleteProduct(idProducto)
+    await this.restApi.deleteProducto(idProducto)
       .subscribe({
         next: (res) => {
           console.log("Error DetailProduct Página", res);

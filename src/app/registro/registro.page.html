@@ -11,56 +11,30 @@
     </ion-card-header>
   
     <ion-card-content>
-      <ion-input
-      [(ngModel)]="nombre"
-      label="Nombres"
-      label-placement="floating"
-      fill="outline"
-      placeholder=""
-      required>
-    </ion-input> 
-    <br>
-      <ion-input
-      [(ngModel)]="Password"
-      type="password"
-      label="Contraseña"
-      label-placement="floating"
-      fill="outline"
-      placeholder=""
-      required>
-    </ion-input> 
-    <br>
-      <ion-input
-      [(ngModel)]="email"
-      label="Email"
-      label-placement="floating"
-      fill="outline"
-      placeholder=""
-      required>
-    </ion-input> 
-    <br>
-      <ion-input
-      [(ngModel)]="Telefono"
-      label="Telefono"
-      label-placement="floating"
-      fill="outline"
-      placeholder=""
-      required>
-    </ion-input> 
-    <br>
-    <ion-input
-    [(ngModel)]="Direccion"
-    label="Direccion"
-    label-placement="floating"
-    fill="outline"
-    placeholder=""
-    required>
-  </ion-input> 
-  <br>
+      <ion-item>
+        <ion-label position="stacked">Nombre</ion-label>
+        <ion-input [(ngModel)]="Nombre" type="text" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Contraseña</ion-label>
+        <ion-input [(ngModel)]="Password" type="password" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input [(ngModel)]="Email" type="email" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Teléfono</ion-label>
+        <ion-input [(ngModel)]="Telefono" type="tel" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Dirección</ion-label>
+        <ion-input [(ngModel)]="Direccion" type="text" required></ion-input>
+      </ion-item>
   
 
     </ion-card-content>
-    <ion-button fill="clear" class="boton_registro" [disabled]="!validarFormulario()" [routerLink]="['/home']">Registrarse</ion-button>
+    <ion-button fill="clear"expand="full" (click)="register()">Registrarse</ion-button>
   </ion-card>
   </div>
 </ion-content>

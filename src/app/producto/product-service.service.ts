@@ -1,85 +1,74 @@
 import { Injectable } from '@angular/core';
 import { ClProducto } from './model/CLProducto';
 
-// Importamos  las librerías necesarias
+
+
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
-// creamos Constantes que utilizaremos en el envio
-const apiUrl = "http://sumativa2.onrender.com/api/productos/";
+const apiUrl = "http://sumativa2.onrender.com/api/productos";
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductServiceService {
-  // Injectamos HttpClient, para poder consular una página
+
   constructor(private http: HttpClient) { }
 
-  // Controla y enviará un mensaje a consola para todos los errores
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error("handleError Harrys", error); // log to console instead
+      console.error("handleError Harrys", error); 
       return of(result as T);
     };
   }
 
-  // Método Agregar producto, y devuelve un observable del tipo Producto
-  // Debe ser un Observable si deses suscribir este método en otro lado
-  addProduct(producto: ClProducto): Observable<ClProducto> {
-    console.log("Res-api Enviando AddProducto : ", producto);
-    // Ojo No lo ejecuta lo declara
-    // El Pipe lo intercepta
-    return this.http.post<ClProducto>(apiUrl, producto, httpOptions)
-      .pipe(  // Tubería
-        // tap intersecta la respuesta si no hay error
-        tap((producto: ClProducto) => console.log('added product w/:', producto)),
-        // En caso de que ocurra Error
-        catchError(this.handleError<ClProducto>('addProduct'))
-      );
-  }
-
-  // Obtenemos todos los Productos
-  getProducts(): Observable<ClProducto[]> {
-    console.log("getProducts ()");
-    return this.http.get<ClProducto[]>(apiUrl)
+    addProducto(Producto: ClProducto): Observable<ClProducto> {
+      console.log("Res-api Enviando AddProducto : ", Producto);
+      return this.http.post<ClProducto>(apiUrl, Producto, httpOptions)
       .pipe(
-        tap(heroes => console.log('fetched products')),
-        catchError(this.handleError('getProducts', []))
+        tap((Producto: ClProducto) => console.log('added producto w/:', Producto)),
+        catchError(this.handleError<ClProducto>('addProducto'))
       );
   }
 
+    getProductos(): Observable<ClProducto[]> {
+     console.log("getProducto ()");
+      return this.http.get<ClProducto[]>(apiUrl)
+       .pipe(
+         tap(heroes => console.log('fetched Productos')),
+          catchError(this.handleError('getProductos', []))
+      );
+  }
 
-  //  Obtener un Producto
-  getProduct(idProducto: string): Observable<ClProducto> {
-    //const url = '${apiUrl}/${id}';
-    //return this.http.get<Producto>(url).pipe(
-    console.log("getProduct ID:" + idProducto);
+    getProducto(idProducto: String): Observable<ClProducto> {
+    console.log("getProducto ID:" + idProducto);
     return this.http.get<ClProducto>(apiUrl + "/" + idProducto)
       .pipe(
-        tap(_ => console.log('fetched product id=${idProducto}')),
-        catchError(this.handleError<ClProducto>('getProduct id=${idProducto}'))
+        tap(_ => console.log('fetched Producto id=${idProducto}')),
+        catchError(this.handleError<ClProducto>('getProducto id=${idProducto}'))
       );
   }
-
-  deleteProduct(idProducto: number): Observable<ClProducto> {
-    //const url = '${apiUrl}/${id}';
-    //return this.http.delete<Producto>(url, httpOptions).pipe(
+   
+  deleteProducto(idProducto: number): Observable<ClProducto> {
     return this.http.delete<ClProducto>(apiUrl + "/" + idProducto, httpOptions)
       .pipe(
-        tap(_ => console.log('deleted product id=${idProducto}')),
-        catchError(this.handleError<ClProducto>('deleteProduct'))
+        tap(_ => console.log('deleted Producto id=${idProducto}')),
+        catchError(this.handleError<ClProducto>('deleteProducto'))
       );
   }
 
-  updateProduct(idProducto: number, producto: ClProducto): Observable<ClProducto> {
-    return this.http.put<ClProducto>(apiUrl + "/" + idProducto, producto, httpOptions)
+  updateProducto(idProducto: number, Producto: ClProducto): Observable<ClProducto> {
+    return this.http.put<ClProducto>(apiUrl + "/" + idProducto, ProductServiceService , httpOptions)
       .pipe(
-        tap(_ => console.log('updated product id=${idProducto}')),
-        catchError(this.handleError<any>('updateProduct'))
+        tap(_ => console.log('updated producto id=${idProducto}')),
+        catchError(this.handleError<any>('updateProducto'))
       );
   }
+
+   
 
 
 }

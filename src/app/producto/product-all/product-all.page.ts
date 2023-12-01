@@ -14,18 +14,18 @@ export class ProductAllPage implements OnInit {
   producto: ClProducto = {
     idProducto: 1, nombreprod: '', precio: 0, cantidad: 0, editorial: '', categoria: '',
     codigo: '',
-    fechaNacimiento: 0,
+    fechaNacimiento: new Date(),
     rut: 0,
-    dv: 0,
+    dv: 'x',
     enfermedad: '',
     fonocontacto: 0,
     raza: '',
     edad: 0,
-    altura: '',
-    hrini: 0,
-    hrfin: 0,
+    altura: 0,
+    hrini: 'x',
+    hrfin: 'x',
     direccion: '',
-    fCreacion: 0
+    fCreacion: new Date()
   };;
 
   constructor() { }

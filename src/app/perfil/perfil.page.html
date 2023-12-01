@@ -1,13 +1,17 @@
 <!-- perfil.page.html -->
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Mi Perfil
-    </ion-title>
+    <ion-button fill="clear"[routerLink]="['/home']" >Volver</ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div container-alo>  <img src="assets/img/logo final.png"/> </div>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Perfil</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
   <ion-list>
     <ion-item>
       <ion-label position="floating">Nombre</ion-label>
@@ -29,7 +33,9 @@
       <ion-input [(ngModel)]="direccion" [disabled]="!editing"></ion-input>
     </ion-item>
   </ion-list>
+</ion-card-content>
 
-  <ion-button expand="full" (click)="toggleEdit()">Editar</ion-button>
-  <ion-button expand="full" (click)="saveChanges()" [disabled]="!editing">Guardar Cambios</ion-button>
+  <ion-button fill="clear"  (click)="toggleEdit()">Editar</ion-button>
+  <ion-button fill="clear"  (click)="saveChanges()" [disabled]="!editing">Guardar Cambios</ion-button>
+</ion-card>
 </ion-content>

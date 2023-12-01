@@ -28,7 +28,7 @@ export class ProductListPage implements OnInit {
     });
     await loading.present();
     console.log("Entrando :");
-    await this.restApi.getProductos()
+    await this.restApi.getProductos("08-g1")
       .subscribe({
         next: (res) => { 
           console.log("Res:" + res);

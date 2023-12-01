@@ -7,7 +7,6 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { RaceModule } from '../race/race.module';
 
-
 @NgModule({
   imports: [
     CommonModule,

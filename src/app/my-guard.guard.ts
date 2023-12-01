@@ -1,43 +1,30 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Router  } from '@angular/router';
-import { Observable, async } from 'rxjs';
-import { Storage } from '@ionic/storage-angular';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import { Storage } from '@ionic/storage-angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router, private authservice: AuthService, private storage: Storage) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private storage: Storage
+  ) {}
 
-  canActivate(
+  async canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
- 
-    // Aquí debes verificar si el usuario está autenticado
-    // Puedes usar servicios de autenticación, almacenamiento local, tokens, etc.
- 
-    const isAuthenticated = true;//await this.storage.get('isLoggedIn') // Cambia esto a tu lógica de autenticación
-  
-    if (isAuthenticated) {
- 
-      return true; // Permitir acceso a la ruta
- 
+    state: RouterStateSnapshot
+  ): Promise<boolean | UrlTree> {
+    const isLoggedIn = await this.authService.isLoggedIn(); // Método del servicio AuthService para verificar la autenticación
+    if (isLoggedIn) {
+      return true; // El usuario está autenticado, permite el acceso a la ruta
     } else {
- 
-      // Redirigir al usuario a la página de inicio de sesión
- 
-      this.router.navigate(['/login']);
- 
-      return false;
- 
+      // El usuario no está autenticado, redirige a la página de inicio de sesión
+      return this.router.createUrlTree(['/login']);
     }
- 
   }
-
-
-
-
-  
 }

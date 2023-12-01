@@ -3,12 +3,13 @@ import { ClProducto } from '../model/categoria';
 
 import { ProductServiceService } from '../categoria.service'; // Importa el servicio ProductServiceService
 
+
 @Component({
-  selector: 'app-fantasia',
-  templateUrl: './fantasia.page.html',
-  styleUrls: ['./fantasia.page.scss'],
+  selector: 'app-terror',
+  templateUrl: './terror.page.html',
+  styleUrls: ['./terror.page.scss'],
 })
-export class FANTASIAPage implements OnInit {
+export class TERRORPage implements OnInit {
   productosFantasia: ClProducto[] = []; // Define una variable para almacenar los productos de fantasía
 
   constructor(private productService: ProductServiceService) { }
@@ -18,16 +19,17 @@ export class FANTASIAPage implements OnInit {
   }
 
   getProductosFantasia() {
-    const categoriaFantasia = 'fantasia'; // Define la categoría 'fantasia'
+    const categoriaFantasia = 'terror' // Define la categoría 'fantasia'
 
     this.productService.getProductos(categoriaFantasia).subscribe(
       (productos: ClProducto[]) => {
         this.productosFantasia = productos; // Almacena los productos de fantasía en la variable definida
       },
       (error) => {
-        console.error('Error al obtener productos de fantasía:', error);
+        console.error('Error al obtener productos de terror:', error);
         // Manejo del error, si es necesario
       }
     );
   }
 }
+

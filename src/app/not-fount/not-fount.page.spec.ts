@@ -1,17 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NotFountPage } from './not-fount.page';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { NotFountPage } from './not-fount.page'; // Asumiendo que es 'not-found.page'
+import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientModule
 
-describe('NotFountPage', () => {
+describe('NotFoundPage', () => {
   let component: NotFountPage;
   let fixture: ComponentFixture<NotFountPage>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [NotFountPage],
+      imports: [HttpClientModule], // Agrega HttpClientModule en imports
+    }).compileComponents();
+
     fixture = TestBed.createComponent(NotFountPage);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+})

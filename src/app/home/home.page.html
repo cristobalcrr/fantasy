@@ -1,7 +1,7 @@
 <ion-menu contentId="main-content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu Content</ion-title>
+      <ion-title>{{ userName }}</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
@@ -16,9 +16,6 @@
     </ion-item>
     <ion-item>
     <ion-button [routerLink]="['/product-list']" fill="clear">Mis Productos</ion-button>
-    </ion-item>
-    <ion-item>
-    <ion-button [routerLink]="['/perfil']" fill="clear">Editar pefil</ion-button>
     </ion-item>
     <ion-item>
     <ion-button (click)="logout()" fill="clear">Salir</ion-button>

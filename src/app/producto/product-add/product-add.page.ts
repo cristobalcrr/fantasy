@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { LoadingController, AlertController } from '@ionic/angular';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoadingController } from '@ionic/angular';
 import { ClProducto } from '../model/CLProducto';
 import { ProductServiceService } from '../product-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-add',
@@ -11,75 +11,90 @@ import { ProductServiceService } from '../product-service.service';
   styleUrls: ['./product-add.page.scss'],
 })
 export class ProductAddPage implements OnInit {
-    
-productForm!: FormGroup;
+  productForm!: FormGroup;
+  producto: ClProducto = {
+    idProducto: 0,
+    codigo: '08-g1',
+    nombreprod: '',
+    precio: 0,
+    cantidad: 0,
+    editorial: '',
+    categoria: '',
+    fechaNacimiento: new Date(),
+    rut: 0,
+    dv: 'x',
+    enfermedad: 'x',
+    fonocontacto: 0,
+    raza: 'x',
+    edad: 0,
+    altura: 0,
+    hrini: 'x',
+    hrfin: 'x',
+    direccion: 'x',
+    fCreacion: new Date()
+  };
 
-producto: ClProducto = {
-  idProducto: 5151,
-  codigo: '08-g1',
-  nombreprod: 'harry potter y la piedra folosofal',
-  precio: 21990,
-  cantidad: 20,
-  editorial: 'salammandra',
-  categoria: 'fantasia',
-  fechaNacimiento: 0,
-  rut: 0,
-  dv: 0,
-  enfermedad: '',
-  fonocontacto: 0,
-  raza: '',
-  edad: 0,
-  altura: '',
-  hrini: 0,
-  hrfin: 0,
-  direccion: '',
-  fCreacion: 0
-};
-
-constructor(private formBuilder: FormBuilder,
-  private loadingController: LoadingController,
-  private restApi:ProductServiceService,
-  private router: Router,
-  ) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private loadingController: LoadingController,
+    private restApi: ProductServiceService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.productForm = this.formBuilder.group({
-        'prod_name': [null, Validators.required],
-        'codigo': [null, Validators.required],
-        'prod_price': [null, Validators.required],
-        'prod_cantidad': [null, Validators.required],
-        'prod_edito': [null, Validators.required],
-        'prod_cate': [null, Validators.required]
+      'prod_name': [null, Validators.required],
+      'codigo': [null, Validators.required],
+      'prod_price': [null, Validators.required],
+      'prod_cantidad': [null, Validators.required],
+      'prod_edito': [null, Validators.required],
+      'prod_cate': [null, Validators.required]
+    });
+  }
+
+  async onFormSubmit(formValue: any) {
+    const loading = await this.loadingController.create({ message: 'Loading...' });
+    await loading.present();
+
+    this.producto = {
+      idProducto: 0,
+      codigo: formValue.codigo,
+      nombreprod: formValue.prod_name,
+      precio: formValue.prod_price,
+      cantidad: formValue.prod_cantidad,
+      editorial: formValue.prod_edito,
+      categoria: formValue.prod_cate,
+      fechaNacimiento: new Date(),
+      rut: 0,
+      dv: 'x',
+      enfermedad: 'x',
+      fonocontacto: 0,
+      raza: 'x',
+      edad: 0,
+      altura: 0,
+      hrini: 'x',
+      hrfin: 'x',
+      direccion: 'x',
+      fCreacion: new Date()
+    };
+
+    await this.restApi.addProducto(this.producto)
+      .subscribe({
+        next: (res) => {
+          loading.dismiss();
+          if (res == null) {
+            console.log("Next No Agrego, Ress Null");
+            return;
+          }
+
+          console.log("Next Agrego SIIIIII, Router redireccionaré;", this.router);
+          this.router.navigate(['/product-list']);
+        },
+        complete: () => { },
+        error: (err) => {
+          console.log("Error AddProducto Página", err);
+          loading.dismiss();
+        }
       });
   }
-async onFormSubmit(form: NgForm) {
-  console.log("onFormSubmit del Producto ADD")
-const loading = await this.loadingController.create({
-  message: 'Loading...'
-});
-
-await loading.present();
-
-  await this.restApi.addProducto(this.producto)
-  .subscribe({
-    next: (res) => {
-      console.log("Next AddProducto Page",res)
-      loading.dismiss();
-      if (res== null){
-        console.log("Next No Agrego, Ress Null ");
-        return
-      }
-      
-      console.log("Next Agrego SIIIIII Router saltaré ;",this.router);
-      this.router.navigate(['/listar']);
-    }
-    , complete: () => { }
-    , error: (err) => {
-      console.log("Error AddProducto Página",err);
-      loading.dismiss();
-    }
-  });
-console.log("Observe que todo lo del suscribe sale después de este mensaje")
-}
-
 }

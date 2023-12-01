@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ClProducto } from '../model/categoria';
+
+import { ProductServiceService } from '../categoria.service'; // Importa el servicio ProductServiceService
+
 
 @Component({
   selector: 'app-misterio',
@@ -6,10 +10,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./misterio.page.scss'],
 })
 export class MISTERIOPage implements OnInit {
+  productosFantasia: ClProducto[] = []; // Define una variable para almacenar los productos de fantasía
 
-  constructor() { }
+  constructor(private productService: ProductServiceService) { }
 
   ngOnInit() {
+    this.getProductosFantasia(); // Llama al método para obtener los productos de fantasía al inicializar el componente
   }
 
+  getProductosFantasia() {
+    const categoriaFantasia = 'misterio'; // Define la categoría 'fantasia'
+
+    this.productService.getProductos(categoriaFantasia).subscribe(
+      (productos: ClProducto[]) => {
+        this.productosFantasia = productos; // Almacena los productos de fantasía en la variable definida
+      },
+      (error) => {
+        console.error('Error al obtener productos de misterio:', error);
+        // Manejo del error, si es necesario
+      }
+    );
+  }
 }

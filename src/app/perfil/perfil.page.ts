@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../auth.service'; // Asegúrate de que la ruta sea correcta
 
 @Component({
   selector: 'app-perfil',
@@ -15,7 +15,11 @@ export class PerfilPage implements OnInit {
 
   constructor(private authService: AuthService) {}
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.getUserInfo();
+  }
+
+  async getUserInfo() {
     const user = await this.authService.getUserInfo();
     if (user) {
       this.nombre = user.Nombre;

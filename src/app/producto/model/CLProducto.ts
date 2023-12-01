@@ -1,23 +1,23 @@
 export class ClProducto{
-  idProducto: number
+  idProducto: number;
   codigo: string;
   nombreprod: string;
   precio: number;
   cantidad: number;
-  fechaNacimiento: number;
+  fechaNacimiento: Date;
   rut: number;
-  dv: number;
+  dv: string;
   enfermedad: string;
   fonocontacto:number;
   categoria: string;
   editorial: string;
   raza: string;
   edad:number;
-  altura: string;
-  hrini: number;
-  hrfin: number;
+  altura: number;
+  hrini: string;
+  hrfin: string;
   direccion: string;
-  fCreacion: number;
+  fCreacion: Date;
 
   constructor(obj: any){
     this.idProducto = obj && obj.idProducto || null

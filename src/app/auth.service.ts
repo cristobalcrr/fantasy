@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 
@@ -6,31 +7,27 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class AuthService {
   constructor(private storage: Storage) {
-    this.ngOnInit();
+    this.initStorage(); // Llama a la función de inicialización en el constructor
   }
 
-  async ngOnInit() {
+  async initStorage() {
     await this.storage.create();
   }
 
-  async login(Nombre: string, Password: string): Promise<boolean> {
-    const usuario = await this.storage.get('user');
-    if (usuario) {
-      console.log(usuario.Nombre, '-', usuario.Password);
-    } else {
-      console.log('No se encontraron datos de usuario.');
-    }
+  async login(username: string, password: string): Promise<boolean> {
+    const user = await this.storage.get('user');
 
-    if (Nombre === usuario.Nombre && Password === usuario.Password) {
-      await this.storage.set('isLoggedIn', true);
-      return true;
-    } else {
+    if (!user || username !== user.Nombre || password !== user.Password) {
+      console.log('Credenciales inválidas o usuario no encontrado.');
       return false;
     }
+
+    await this.storage.set('isLoggedIn', true);
+    return true;
   }
 
-  async register(Nombre: string, Password: string, Email: string, Telefono: string, Direccion: string): Promise<boolean> {
-    await this.storage.set('user', { Nombre, Password, Email, Telefono, Direccion });
+  async register(username: string, password: string, email: string, phone: string, address: string): Promise<boolean> {
+    await this.storage.set('user', { Nombre: username, Password: password, Email: email, Telefono: phone, Direccion: address });
     return true;
   }
 
@@ -43,25 +40,21 @@ export class AuthService {
   }
 
   async getUserName(): Promise<string | null> {
-    const usuario = await this.storage.get('user');
-    if (usuario && usuario.Nombre) {
-      return usuario.Nombre;
-    } else {
-      return null;
-    }
+    const user = await this.storage.get('user');
+    return user ? user.Nombre : null;
   }
 
   async getUserInfo(): Promise<any> {
     return await this.storage.get('user');
   }
 
-  async updateUserInfo(nombre: string, email: string, telefono: string, direccion: string): Promise<void> {
+  async updateUserInfo(name: string, email: string, phone: string, address: string): Promise<void> {
     const user = await this.storage.get('user');
     if (user) {
-      user.Nombre = nombre;
+      user.Nombre = name;
       user.Email = email;
-      user.Telefono = telefono;
-      user.Direccion = direccion;
+      user.Telefono = phone;
+      user.Direccion = address;
       await this.storage.set('user', user);
     }
   }
